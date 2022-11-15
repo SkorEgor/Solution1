@@ -27,7 +27,7 @@ bool operator == (const Object& obj1, const Object& obj2) {
 HRESULT __stdcall CList::QueryInterface(REFIID iid, void** ppv) {
 	if (iid == IID_IUnknown) *ppv = (ICollection*)this;
 	else if (iid == IID_ICollection) *ppv = (ICollection*)this;
-	else if (iid == IID_IEnumerator) *ppv = (ICollection*)this;
+	else if (iid == IID_IEnumerator) *ppv = (IEnumerator*)this;
 	else {
 		*ppv = NULL;
 		return E_NOINTERFACE;

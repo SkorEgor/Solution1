@@ -14,7 +14,6 @@ void main() {
 	IUnknown* pIUnknown = funk();//CreateInstance();
 
 	ICollection* pIC = 0;
-	IEnumerator* pIE = 0;
 	
 
 	//Проверка ICollection
@@ -69,7 +68,10 @@ void main() {
 	valueObj.Value.Double = 2.789;
 	pIC->Add(valueObj);
 	pIC->Release();
+
+
 	//Проверка IEnumerator
+	IEnumerator* pIE = 0;
 	cout << "IEnumerator" << endl;
 	HRESULT resultIE;
 	resultIE = pIUnknown->QueryInterface(IID_IEnumerator, (void**)&pIE);
@@ -77,6 +79,7 @@ void main() {
 
 	//Сброс 
 	pIE->Reset();
+
 
 	int go = 0;
 	pIE->MoveNext(&go);
@@ -86,7 +89,8 @@ void main() {
 		cout << objCur.Value.Double << "\t";
 		pIE->MoveNext(&go);
 	}
-
+	pIC->Release();
+	pIE->Release();
 
 }
 
